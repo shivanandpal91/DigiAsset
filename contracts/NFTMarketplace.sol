@@ -44,6 +44,7 @@ contract NFTMarketplace is ERC721URIStorage {
     }
 
     function updateListPrice(uint256 _listPrice) public payable {
+        //require mean this function is only called when owner== msg.sender else that error message
         require(owner == msg.sender, "Only owner can update listing price");
         listPrice = _listPrice;
     }

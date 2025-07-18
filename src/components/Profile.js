@@ -4,6 +4,7 @@ import MarketplaceJSON from "../Marketplace.json";
 import axios from "axios";
 import { useState } from "react";
 import NFTTile from "./NFTTile";
+import About from "./About";
 
 export default function Profile () {
     const [data, updateData] = useState([]);
@@ -60,38 +61,86 @@ export default function Profile () {
     if(!dataFetched)
         getNFTData(tokenId);
 
+    // return (
+    //     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    //         <Navbar />
+            
+    //         <div className="container mx-auto px-4 py-10">
+    //             <div className="text-center space-y-3">
+    //                 <h2 className="text-3xl md:text-4xl font-bold text-emerald-400">Wallet Address</h2>
+    //                 <p className="break-words text-sm md:text-base text-gray-300 max-w-2xl mx-auto">{address}</p>
+    //             </div>
+
+    //             <div className="mt-10 flex flex-col md:flex-row justify-center gap-12 text-center">
+    //                 <div className="bg-gray-800 border border-emerald-500 p-6 rounded-2xl shadow-md">
+    //                     <h3 className="text-lg md:text-xl font-semibold text-emerald-300">No. of NFTs</h3>
+    //                     <p className="text-2xl font-bold mt-2 text-white">{data.length}</p>
+    //                 </div>
+    //                 <div className="bg-gray-800 border border-emerald-500 p-6 rounded-2xl shadow-md">
+    //                     <h3 className="text-lg md:text-xl font-semibold text-emerald-300">Total Value</h3>
+    //                     <p className="text-2xl font-bold mt-2 text-white">{totalPrice} ETH</p>
+    //                 </div>
+    //             </div>
+
+    //             <div className="mt-14 text-center">
+    //                 <h2 className="text-3xl font-bold mb-6 text-emerald-400">Your NFTs</h2>
+    //                 <div className="flex justify-center flex-wrap gap-6">
+    //                     {data.map((value, index) => (
+    //                         <NFTTile data={value} key={index} />
+    //                     ))}
+    //                 </div>
+    //                 {data.length === 0 && (
+    //                     <p className="mt-10 text-lg text-red-400">Oops, No NFT data to display (Are you logged in?)</p>
+    //                 )}
+    //             </div>
+    //         </div>
+    //     </div>
+    // );
+
+
+
     return (
-        <div className="profileClass" style={{"min-height":"100vh"}}>
-            <Navbar></Navbar>
-            <div className="profileClass">
-            <div className="flex text-center flex-col mt-11 md:text-2xl text-white">
-                <div className="mb-5">
-                    <h2 className="font-bold">Wallet Address</h2>  
-                    {address}
-                </div>
-            </div>
-            <div className="flex flex-row text-center justify-center mt-10 md:text-2xl text-white">
-                    <div>
-                        <h2 className="font-bold">No. of NFTs</h2>
-                        {data.length}
-                    </div>
-                    <div className="ml-20">
-                        <h2 className="font-bold">Total Value</h2>
-                        {totalPrice} ETH
-                    </div>
-            </div>
-            <div className="flex flex-col text-center items-center mt-11 text-white">
-                <h2 className="font-bold">Your NFTs</h2>
-                <div className="flex justify-center flex-wrap max-w-screen-xl">
-                    {data.map((value, index) => {
-                    return <NFTTile data={value} key={index}></NFTTile>;
-                    })}
-                </div>
-                <div className="mt-10 text-xl">
-                    {data.length == 0 ? "Oops, No NFT data to display (Are you logged in?)":""}
-                </div>
-            </div>
-            </div>
+  <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <Navbar />
+
+    <div className="container mx-auto px-4 py-10">
+      <div className="text-center space-y-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-emerald-400">Wallet Address</h2>
+        <p className="break-words text-sm md:text-base text-gray-300 max-w-2xl mx-auto">{address}</p>
+      </div>
+
+      <div className="mt-10 flex flex-col md:flex-row justify-center gap-12 text-center">
+        <div className="bg-gray-800 border border-emerald-500 p-6 rounded-2xl shadow-lg hover:shadow-emerald-600 transition duration-300 ease-in-out">
+          <h3 className="text-lg md:text-xl font-semibold text-emerald-300">No. of Assets you own</h3>
+          <p className="text-2xl font-bold mt-2 text-white">{data.length}</p>
         </div>
-    )
+        <div className="bg-gray-800 border border-emerald-500 p-6 rounded-2xl shadow-lg hover:shadow-emerald-600 transition duration-300 ease-in-out">
+          <h3 className="text-lg md:text-xl font-semibold text-emerald-300">Total Value</h3>
+          <p className="text-2xl font-bold mt-2 text-white">{totalPrice} ETH</p>
+        </div>
+      </div>
+
+      <div className="mt-14 text-center">
+        <h2 className="text-3xl font-bold mb-6 text-emerald-400">Your Assets</h2>
+        <div className="flex justify-center flex-wrap gap-6">
+          {data.map((value, index) => (
+            <NFTTile data={value} key={index} />
+          ))}
+        </div>
+        {data.length === 0 && (
+          <p className="mt-10 text-lg ">
+                <div className="text-red-400 font-medium text-lg px-6 pb-2">
+                    {address !== "0x"
+                    ? `Oops, No data to display.`
+                    : "Are you logged in?"}
+                </div>
+           
+          </p>
+        )}
+      </div>
+    </div>
+    <About />
+  </div>
+);
+
 };
