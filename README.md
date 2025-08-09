@@ -1,7 +1,7 @@
 
 💎 DigiAssets
 
-    A decentralized marketplace where users can mint, buy, and sell DigiAssets (NFT tokens) built on the Ethereum blockchain using the Sepolia testnet.
+"A decentralized marketplace where users can mint, buy, and sell DigiAssets (NFT tokens) built on the Ethereum blockchain using the Sepolia testnet."
 
 📌 Table of Contents
 
